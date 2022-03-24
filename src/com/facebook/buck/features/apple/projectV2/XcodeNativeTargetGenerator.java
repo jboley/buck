@@ -1861,10 +1861,7 @@ public class XcodeNativeTargetGenerator {
 
       // I'm not sure how to look for the correct folder here, so just adding both for now, if the
       // folder changes in a future release this can be revisited.
-      librarySearchPaths.add("$DT_TOOLCHAIN_DIR/usr/lib/swift/$PLATFORM_NAME");
-      if (options.shouldLinkSystemSwift()) {
-        librarySearchPaths.add("$DT_TOOLCHAIN_DIR/usr/lib/swift-5.2/$PLATFORM_NAME");
-      }
+      librarySearchPaths.add("$SDKROOT/usr/lib/swift");
     }
 
     if (swiftDeps.size() > 0 || projGenerationStateCache.targetContainsSwiftSourceCode(node)) {
