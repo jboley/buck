@@ -857,7 +857,8 @@ public class WorkspaceAndProjectGenerator {
 
     // Only create schemes for APP_EXTENSION or its subtypes. (e.g. iMesage apps)
     ProductType productType = ProductType.of(bundleArg.getXcodeProductType().get());
-    return productType.toString().startsWith(ProductTypes.APP_EXTENSION.toString());
+    return productType.toString().startsWith(ProductTypes.APP_EXTENSION.toString()) ||
+        productType.toString().equals("com.apple.product-type.application.watchapp2");
   }
 
   /**
