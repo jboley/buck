@@ -967,9 +967,9 @@ public class AppleBundle extends AbstractBuildRule
         }
         break;
       case WATCH_SIMULATOR:
-        if (!isLegacyWatchApp()) {
-          keys.put("CFBundleSupportedPlatforms", new NSArray(new NSString("WatchSimulator")));
-        }
+        //if (!isLegacyWatchApp()) {
+        //  keys.put("CFBundleSupportedPlatforms", new NSArray(new NSString("WatchSimulator")));
+        //}
         break;
       case TV_DEVICE:
       case TV_SIMULATOR:

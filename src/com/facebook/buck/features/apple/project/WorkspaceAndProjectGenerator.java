@@ -845,6 +845,7 @@ public class WorkspaceAndProjectGenerator {
       TargetNode<?> targetNode) {
     // Bundle description required to determine product type for target node.
     if (!(targetNode.getConstructorArg() instanceof AppleBundleDescriptionArg)) {
+        LOG.debug("Node %s is not an apple bundle", targetNode.toString());
       return false;
     }
 
@@ -852,12 +853,15 @@ public class WorkspaceAndProjectGenerator {
     AppleBundleDescriptionArg bundleArg =
         (AppleBundleDescriptionArg) targetNode.getConstructorArg();
     if (!bundleArg.getXcodeProductType().isPresent()) {
+        LOG.debug("Node %s does not have Xcode product type", targetNode.toString());
       return false;
     }
 
     // Only create schemes for APP_EXTENSION or its subtypes. (e.g. iMesage apps)
     ProductType productType = ProductType.of(bundleArg.getXcodeProductType().get());
-    return productType.toString().startsWith(ProductTypes.APP_EXTENSION.toString());
+    LOG.debug("Node %s has product type of %s", targetNode.toString(), productType.toString());
+    return productType.toString().startsWith(ProductTypes.APP_EXTENSION.toString()) ||
+        productType.toString().equals("com.apple.product-type.application.watchapp2");
   }
 
   /**
