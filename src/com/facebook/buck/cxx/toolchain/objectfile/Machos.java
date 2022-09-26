@@ -195,7 +195,8 @@ public class Machos {
       throw new MachoException("LC_SYMTAB command not found");
     }
     if (stringTableOffset + stringTableSize != size) {
-      throw new MachoException("String table does not end at end of file");
+      return;
+      //throw new MachoException("String table does not end at end of file");
     }
     if (segmentSizePosition == 0 || segmentSize == 0) {
       throw new MachoException("LC_SEGMENT or LC_SEGMENT_64 command for string table not found");
